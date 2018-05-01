@@ -1,0 +1,210 @@
+\newif\ifvimbug
+\vimbugfalse
+
+\ifvimbug
+\begin{document}
+\fi
+
+\exercise{Linear Algebra Refresher}
+ 
+
+\begin{questions}
+
+%----------------------------------------------
+
+\begin{question}{Matrix Properties}{5}
+A colleague of yours suggests matrix addition and multiplication are similar to scalars, thus commutative, distributive and associative properties can be applied.
+Is the statement correct? Prove it analytically or give counterexamples (for both operations) considering three matrices $ A, B, C$ of size $n\times n$.
+
+\begin{answer}
+	\begin{itemize}
+		\item Addition
+			\begin{itemize}
+				\item Commutative \\
+				Given $ A = [ a_{ij} ]$ and $ B = [ b_{ij} ]$ $\forall i, j =  {1,2,...n}$, \\
+				$A + B = [a_{ij} +b_{ij}] $, \\
+				$B + A = [b_{ij} +a_{ij}] $. \\ 
+				Since the sum of two scalars is commutative than the sum of two matrices is commutative.
+				\item Associative
+				Given $ A = [ a_{ij} ]$, $ B = [ b_{ij} ]$ and $ C = [ c_{ij} ]$ $\forall i, j =  {1,2,...n}$, \\
+				$A + B + C = [ a_{ij} + b_{ij} + c_{ij} ]$ 
+				$(A+B) + C = [ (a_{ij} + b_{ij}) + c_{ij} ]$
+				Since the sum of two scalars is associative than the sum of two matrices is associative.
+			\end{itemize}
+		\item Multiplication
+		 	\begin{itemize}
+		 		\item Commutative \\
+		 		This property is not verified. \\
+		 		For instance, given \\
+		 		\begin{equation*}
+		 		A = ( \begin{array}{c c } 
+		 		1 & 2  \\
+		 		13& 4 \end{array} ),
+		 		\end{equation*}
+		 		\begin{equation*}
+		 		B = ( \begin{array}{c c } 
+		 		1 & 1  \\
+		 		2& 3 \end{array} )
+		 		\end{equation*}
+		 		\begin{equation*}
+		 		\Rightarrow 
+		 		A*B = ( \begin{array}{c c } 
+		 		5& 7  \\
+		 		11& 15 \end{array} ) \ \&  \
+		 		B*A = ( \begin{array}{c c } 
+		 		4& 6  \\
+		 		11& 16 \end{array} )
+		 		\end{equation*}
+		 		\item Distributive\\
+		 		Given $ A = [ a_{ij} ]$, $ B = [ b_{ij} ]$ and $ C = [ c_{ij} ]$ $\forall i, j =  {1,2,...n}$. \\
+		 		I have to prove that $ A*(B + C) = A*B + A*C $ \\
+		 		$A*(B + C) =[ \sum_{k=1}^{n} a_{ik}*(b_{kj}+c_{kj}) =\sum_{k=1}^{n} a_{ik}b_{kj} + \sum_{k=1}^{n} a_{ik}c_{kj}]= A*B + A*C$\\
+		 		\item Associative \\
+		 		Given $ A = [ a_{ij} ]$, $ B = [ b_{ij} ]$ and $ C = [ c_{ij} ]$ $\forall i, j =  {1,2,...n}$, \\
+		 		I have to prove that $(A*B)*C=A*(B*C)$. \\
+		 		$(A*B)*C =[r_{ij}]$ where $r_{ij} = \sum_{k=1}^{n} (\sum_{l=1}^{n}a_{il}*b_{lk})c_{kj} =\sum_{k=1}^{n} \sum_{l=1}^{n}(a_{il}*b_{lk})*c_{kj} $ \\
+		 		$A*(B*C) =[s_{ij}]$ where $s_{ij} = \sum_{k=1}^{n}a_{ik} (\sum_{l=1}^{n}b_{kl}*c_{lj}) = \sum_{k=1}^{n} \sum_{l=1}^{n}a_{il}*(b_{lk}*c_{kj})$.\\
+		 			Since the multiplication of two scalars is associative than the multiplication of two matrices is associative.
+		 	\end{itemize}
+	\end{itemize}
+\end{answer}
+
+\end{question}
+
+%----------------------------------------------
+
+\begin{question}{Matrix Inversion}{6}
+Given the following matrix 
+\begin{equation*}
+     A = ( \begin{array}{c c c} 
+     1 & 2 & 3 \\
+     1 & 2 & 4 \\
+     1 & 4 & 5 \end{array} )
+\end{equation*}
+analytically compute its inverse $ A^{-1}$ and illustrate the steps.
+
+If we change the matrix in
+\begin{equation*}
+     A = ( \begin{array}{c c c} 
+     1 & 2 & 3 \\
+     1 & 2 & 4 \\
+     1 & 2 & 5 \end{array} )
+\end{equation*}
+is it still invertible? Why?
+
+\begin{answer}
+	\begin{enumerate}
+		\item II - I and III - I\\
+		\bigskip
+		$	
+		\left[\begin{array}{ccc|ccc}
+			1 & 2 & 3 & 1&0&0    \\       
+			1 & 2 & 4 & 0&1&0    \\       
+			1 & 4 & 5 & 0&0&1     \\      
+		\end{array} \right] =
+		\left[\begin{array}{ccc|ccc}
+		1 & 2 & 3 & 1&0&0    \\       
+		0& 0 & 1 & -1&1&0    \\       
+		0& 2 & 2 & -1&0&1     \\      
+		\end{array} \right]
+		$
+		
+		\item III divided by 2  and change of II with III \\
+		\bigskip
+		$	
+		\left[\begin{array}{ccc|ccc}
+		1 & 2 & 3 & 1&0&0    \\       
+		0& 0 & 1 & -1&1&0    \\       
+		0& 2 & 2 & -1&0&1     \\      
+		\end{array} \right] =
+		\left[\begin{array}{ccc|ccc}
+		1 & 2 & 3 & 1&0&0    \\       
+		0& 1 & 1 & -\frac{1}{2}&0&\frac{1}{2}    \\       
+		0& 0 & 1 & -1&1&0     \\      
+		\end{array} \right]
+		$
+		
+		\item II - III and I - 3*III \\
+		\bigskip
+		$	
+		\left[\begin{array}{ccc|ccc}
+		1 & 2 & 3 & 1&0&0    \\       
+		0& 1 & 1 & -\frac{1}{2}&0&\frac{1}{2}    \\       
+		0& 0 & 1 & -1&1&0     \\      
+		\end{array} \right] =
+		\left[\begin{array}{ccc|ccc}
+		1 & 2 & 0 & 4&-3&0    \\       
+		0& 1 & 0 & \frac{1}{2}&-1&\frac{1}{2}    \\       
+		0& 0 & 1 & -1&1&0     \\      
+		\end{array} \right]
+		$
+		
+		\item I- 2* II \\
+		\bigskip
+		$	
+		\left[\begin{array}{ccc|ccc}
+		1 & 2 & 0 & 4&-3&0    \\       
+		0& 1 & 0 & \frac{1}{2}&-1&\frac{1}{2}    \\       
+		0& 0 & 1 & -1&1&0     \\      
+		\end{array} \right]=
+		\left[\begin{array}{ccc|ccc}
+		1 & 0 & 0 & 3&-1&-1    \\       
+		0& 1 & 0 & \frac{1}{2}&-1&\frac{1}{2}    \\       
+		0& 0 & 1 & -1&1&0     \\      
+		\end{array} \right]
+		$
+	\end{enumerate}
+ 
+ The second matrix is not invertible because the first and the second columns are linearly depends, so it is not a full rank matrix  so it is singular.
+\end{answer}
+
+\end{question}
+	
+%----------------------------------------------
+
+\begin{question}{Matrix Pseudoinverse}{3}
+	Write the definition of the right and left Moore-Penrose pseudoinverse of a generic matrix $A \in \R^{n\times m}$.
+	
+	Given $A \in \R^{2 \times 3}$, which one does exist? Write down the equation for computing it, specifying the dimensionality of the matrices in the intermediate steps.
+	
+\begin{answer}
+For a generic matrix $ A \in \R^{n \times m} $, a pseudoinverse of $ A $ is defined as a matrix $ A^{+} \in \R^{m \times n} $ satisfying all the four Moore-Penrose conditions: \\
+\begin{enumerate}
+	\item $ AA^{+}A=A $ \\
+	\item $ A^{+}AA^{+}= A^{+} $ \\
+	\item $ (AA^{+})^{T}=AA^{+} $ \\
+	\item $ (A^{+}A)^{T}=A^{+}A $  \\
+\end{enumerate}
+When $ A $ has linearly independent columns (it means that matrix $ A^{T}A $ is invertible), $ A^{+}$ can be computed as: \\
+$ A^{+}=(A^{T}A)^{-1}A^{T} $ \\
+This is the \textbf{left Moore-Penrose pseudoinverse}, since $ A^{+}A=I $. \\
+When $ A $ has linearly independent rows (matrix $ AA^{T} $ is invertible), $ A^{+} $ can be computed as: \\
+$ A^{+}=A^{T}(AA^{T})^{-1} $ \\
+This is the \textbf{right Moore-Penrose pseudoinverse}, since $ AA^{+}=I $. \\ \\
+Given $A=[a_{ij}]^{2 \times 3}$ only the right inverse exists: $ A_{\text{right}}^{+} =A^{T}(AA^{T})^{-1} $ \\
+By components it is computed as: \\ \\
+$ AA^{T}=[a_{ij}]^{2 \times 3}[a_{ji}]^{3 \times 2}=[b_{ij}]^{2 \times 2} $ \\ \\
+$ (AA^{T})^{-1}=[b_{ij}]^{-1} = \frac{1}{det(AA^{T})}[c_{ij}]^{2 \times 2} $ \\ \\
+$ A^{T}(AA^{T})^{-1} = \frac{1}{det(AA^{T})}[a_{ji}]^{3 \times 2}[c_{ij}]^{2 \times 2} = [d_{ij}]^{3 \times 2}= A_{\text{right}}^{+} $
+
+
+\end{answer}
+\end{question}
+
+%----------------------------------------------
+
+\begin{question}{Eigenvectors \& Eigenvalues}{6}
+What are eigenvectors and eigenvalues of a matrix $A$? Briefly explain why they are important in Machine Learning.
+
+\begin{answer}
+
+Given a matrix A s.t. $\exists$ \textbf{v} $\in {\rm I\!R}^n $ and $\lambda \in {\rm I\!R}$ if  $ Ax = \lambda x $ then \textbf{v} is called eigenvector of A and $\lambda$ is the corresponding eigenvalue. \\
+Eigenvalues and Eigenvectors are important in Machine Learning because they form a basis and allow simple compunting since product between matrix and vectors becomes a product between a scalar and the vector.
+
+\end{answer}
+
+\end{question}
+
+%----------------------------------------------
+
+\end{questions}

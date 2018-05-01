@@ -1,0 +1,246 @@
+\newif\ifvimbug
+\vimbugfalse
+
+\ifvimbug
+\begin{document}
+\fi
+
+\exercise{Statistics Refresher}
+ 
+
+\begin{questions}
+
+%----------------------------------------------
+
+\begin{question}{Expectation and Variance}{8}
+Let $\Omega$ be a finite set and $P:\Omega\rightarrow\R$ a probability measure that (by definition) satisfies $P(\omega)\geq0$ for all $\omega\in\Omega$ and $\sum_{\omega\in\Omega}P(\omega)=1$. 
+Let $f:\Omega\rightarrow\R$ be an arbitrary function on $\Omega$.
+
+\textbf{1)} Write the definition of expectation and variance of $f$ and discuss if they are linear operators.
+
+\textbf{2)} You are given a set of three dices $\{A,B,C\}$.
+The following table describes the outcome of six rollouts for these dices, where each column shows the outcome of the respective dice. 
+(Note: assume the dices are standard six-sided dices with values between 1-6)
+\begin{equation*}
+\begin{array}{r|cccccc}
+    A & 4 & 4 & 2 & 4 & 1 & 1 \\
+    \hline
+    B & 3 & 6 & 3 & 3 & 4 & 3 \\
+    \hline
+    C & 5 & 5 & 2 & 1 & 1 & 1 
+\end{array}
+\end{equation*}
+Estimate the expectation and the variance for each dice using unbiased estimators. (Show your computations).
+
+\textbf{3)} According to the data, which of them is the ``most rigged''? Why?
+
+\begin{answer}
+\textbf{1)} Expected value is defined as:
+$$E(f) = \sum_{\omega \in \Omega} f(\omega)P(\omega)$$
+Variance is defined as:
+$$var(f) = \sum_{\omega \in \Omega} (f(\omega)-E(f))^2P(\omega)$$
+
+$ E[\alpha f(x) + \beta g(x)] = \alpha  E[f(x)] + \beta E[g(x)]$ thanks to the Expectation operator properties. So it is a linear operator. \\
+$ Var[\alpha f(x) + \beta g(x)] = \alpha^{2}  Var[f(x)] + \beta^{2} E[g(x)] + 2\alpha \beta Cov[f(x),g(x)] $. So it is not a linear operator \\ \\
+\textbf{2)} \begin{itemize}
+	\item \textbf{Dice A: } \newline
+	$$
+	E(A) = \frac{1}{6} (4+4+2+4+1+1 ) = \frac{16}{6}
+	$$
+	
+	$$
+	var(A) = \frac{3}{5}(4-\frac{16}{6})^2 + \frac{1}{5}(2-\frac{16}{6})^2 + \frac{2}{5}(1-\frac{16}{6})^2 = \frac{34}{15}
+	$$
+	
+	\item \textbf{Dice B: } \newline
+	$$
+	E(A) = \frac{1}{6} (3+6+3+3+4+3) = \frac{11}{3}
+	$$
+	
+	$$
+	var(A) = \frac{4}{5}(3-\frac{11}{3})^2 + 
+	\frac{1}{5}(6-\frac{11}{3})^2 + 
+	\frac{1}{5}(4-\frac{11}{3})^2 = \frac{22}{15}
+	$$
+	
+	\item \textbf{Dice C: } \newline
+	$$
+	E(A) = \frac{1}{6} (5+5+2+1+1+1) = \frac{5}{2}
+	$$
+	
+	$$
+	var(A) = \frac{2}{5}(5-\frac{5}{2})^2 + 
+	\frac{1}{5}(2-\frac{5}{2})^2 + 
+	\frac{3}{5}(1-\frac{5}{2})^2 = \frac{39}{10}
+	$$
+\end{itemize}
+
+\textbf{3)}
+The most rigged dice is the dice with higher observed standard deviation of the result frequencies with respect to the one of a balanced dice.\\
+A balanced dice is expected to output any number with probability $1/6$.
+\begin{itemize}
+	\item \textbf{A} 
+	$$
+	\sqrt{
+		(\frac{2}{6}-\frac{1}{6})^2 +
+		(\frac{1}{6}-\frac{1}{6})^2 +
+		(\frac{0}{6}-\frac{1}{6})^2 +
+		(\frac{3}{6}-\frac{1}{6})^2 +
+		(\frac{0}{6}-\frac{1}{6})^2 +
+		(\frac{0}{6}-\frac{1}{6})^2
+	} = 
+	$$
+	$$
+	= \sqrt{\frac{2}{9}} = \frac{\sqrt{2}}{3} \approx 0.4714
+	$$
+	\item \textbf{B} 
+	$$
+	\sqrt{
+		(\frac{0}{6}-\frac{1}{6})^2 +
+		(\frac{0}{6}-\frac{1}{6})^2 +
+		(\frac{4}{6}-\frac{1}{6})^2 +
+		(\frac{1}{6}-\frac{1}{6})^2 +
+		(\frac{0}{6}-\frac{1}{6})^2 +
+		(\frac{1}{6}-\frac{1}{6})^2
+	} = 
+	$$
+	$$
+	= \sqrt{\frac{1}{3}} = \frac{1}{\sqrt{3}} \approx 0.5774
+	$$
+	
+	
+	\item \textbf{C} 
+	$$
+	\sqrt{
+		(\frac{3}{6}-\frac{1}{6})^2 +
+		(\frac{1}{6}-\frac{1}{6})^2 +
+		(\frac{0}{6}-\frac{1}{6})^2 +
+		(\frac{0}{6}-\frac{1}{6})^2 +
+		(\frac{2}{6}-\frac{1}{6})^2 +
+		(\frac{0}{6}-\frac{1}{6})^2
+	} = 
+	$$
+	$$
+	= \sqrt{\frac{2}{9}} = \frac{\sqrt{2}}{3} \approx 0.4714
+	$$
+\end{itemize}
+
+Hence the dice $B$ is the most rigged since he has the biggest standard deviation.
+\end{answer}
+
+\end{question}
+
+%----------------------------------------------
+
+\begin{question}{It is a Cold World}{7}
+Consider the following three statements:
+\\
+a) A person with a cold has backpain $25\%$ of the time.
+\\
+b) $4\%$ of the world population has a cold.
+\\
+c) $15\%$ of those who do not have a cold, still have backpain.
+
+\textbf{1)} Identify random variables from the statements above and define a unique symbol for each of them.\\
+\textbf{2)} Define the domain of each random variable.\\
+\textbf{3)} Represent the three statements above with your random variables.\\
+\textbf{4)} If you suffer from backpain, what are the chances that you suffer from a cold? (Show all the intermediate steps.)
+
+\begin{answer}
+	\textbf{1)} Let $C$ be a Bernoulli random variable that identify if a person has or not cold. \\
+	Let $B$ be a Bernoulli random variable that identify if a person has or not backpain. \\
+	\textbf{2)} The domain of bot $C$ and $B$ is $\{0, 1\}$ since they are Bernoulli.\\
+	\textbf{3)} 
+	\begin{itemize}
+	\item [a)] $ P( B=1 | C=1 ) = 25\% $
+	\item [b)] $ P( C=1 ) = 4\% $
+	\item [c)] $ P( B=1 | C=0 ) = 15\% $
+\end{itemize}
+	\textbf{4)} We want to obtain the following probability: $ P( C=1 | B=1 ) $ \\
+	Applying Bayes theorem:
+	$$
+	P( C=1 | B=1 ) = \frac{P( B=1 | C=1 ) P( C=1 )}{P( B=1 )}
+	$$
+	Both $ P( B=1 | C=1 ) $ and $ P( C=1 ) $ are known. \\
+	Now we need to calculate only $P(B=1)$:
+	$$
+	P(B=1) = P( B=1 | C=1 ) \cdot P( C=1 ) + P( B=1 | C=0 ) \cdot P( C=0 ) =
+	$$
+	$$
+	= \frac{25}{100} \cdot \frac{4}{100} + \frac{15}{100} \cdot \frac{96}{100} = 0.154
+	$$
+	Hence:
+	$$
+	P( C=1 | B=1 ) = \frac{P( B=1 | C=1 ) P( C=1 )}{P( B=1 )} = \frac{0.25 \cdot 0.04}{0.154} = \frac{5}{77}
+	$$
+\end{answer}
+
+\end{question}
+
+
+%----------------------------------------------
+
+\begin{question}{Journey to THX1138}{10}
+	After the success of the \href{http://rosetta.esa.int/}{Rosetta mission}, ESA decided to send a spaceship to rendezvous with the comet THX1138. 
+	This spacecraft consists of four independent subsystems $A,B,C,D$. 
+	Each subsystem has a probability of failing during the journey equal to $1/3$. 
+	\\
+	1) What is the probability of the spacecraft $S$ to be in working condition (i.e., all subsystems are operational at the same time) at the rendezvous?
+	\\
+	2) Given that the spacecraft $S$ is not operating properly, compute	analytically the probability that \textbf{only} subsystem $A$ has failed. 
+	\\
+	3) Instead of computing the probability analytically, do a simple simulation experiment and compare the result to the previous solution. 
+	Include a snippet of your code. 
+	\\
+	4) An improved spacecraft version has been designed.
+	The new spacecraft fails if the critical subsystem $A$ fails, or any two subsystems of the remaining $B,C,D$ fail. 
+	What is the probability that \textbf{only} subsystem $A$ has failed, given that the spacecraft $S$ is failing? 
+	
+	
+\begin{answer}
+	1)Since the random variables $A$, $B$, $C$, $D$ are i.i.d. the probability of the disjunction is obtained simply by multiplying the single probabilities, hence:
+	$$
+	P(A=1 \cap B=1 \cap C=1 \cap D=1) = P(A=1) \cdot P(B=1) \cdot P(C=1) \cdot P(D=1) = (\frac{2}{3})^4
+	$$\\
+	2)$$
+	P(A=0 \cap B,C,D = 1 \ | \ S = 0) = \frac{P(S=0 | A= 0 \cap B=1 \cap C=1 \cap D=1) \cdot P(A=1 \cap B=1 \cap C=1 \cap D=1)}{P(S=0)} = 
+	$$ \\
+	$$
+	 = \frac{1 \cdot (\frac{2}{3})^3 \cdot \frac{1}{3}}{1- (\frac{2}{3})^4} = \frac{8}{65}
+	$$\\
+	3)
+\lstinputlisting[language=Python]{rosetta.py}	
+%	\begin{lstlisting}
+%		TRIES = 10000000
+%		PROB = 2. / 3
+%		a = np.random.binomial(1, PROB, TRIES)
+%		b = np.random.binomial(1, PROB, TRIES)
+%		c = np.random.binomial(1, PROB, TRIES)
+%		d = np.random.binomial(1, PROB, TRIES)
+%		success = 0
+%		for i in range(TRIES):
+%		if a[i] == 0 and b[i] == 1 and c[i] == 1 and d[i] == 1:
+%		success += 1
+%		print (success / TRIES)
+%	\end{lstlisting}
+		
+	
+	The analytical result is $8/81 \approx 0.09876543209$\\
+	The result of the simple simulation above (in one specific computation) was $0.0986829$, and they match up to the fourth decimal digit.
+
+	4) We know that 
+	$$
+	P(S=0) \ = \ P(S=0 \  | \ A=1) \cdot P(A=1) + P(S=0 \ | \ A=0) \cdot P(A=0) \ = \  ( {{3}\choose{2}} \frac{2}{3} (\frac{1}{3})^2 + (\frac{1}{3})^3) \cdot \frac{2}{3} + 1 \cdot  \frac{1}{3}=\frac{41}{81}
+	$$\\
+	Hence 
+	$$
+	P(A=0 \cap B=1 \cap C=1 \cap D=1 \ | \ S=0) \ = $$$$ = \frac{P(S=0 \  | \ A=0 \cap  B=1 \cap C=1 \cap D=1) \cdot P( \ A=0 \cap  B=1 \cap C=1 \cap D=1) }{P(S = 0)}  = 
+	$$$$
+	= \frac{1 \cdot \frac{1}{3} \cdot (\frac{2}{3})^3}{\frac{41}{81}} = \frac{8}{41}  \approx 0.19512
+	$$
+\end{answer}
+	
+\end{question}
+
+
+\end{questions}
